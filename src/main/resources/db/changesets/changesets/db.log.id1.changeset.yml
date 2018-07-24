@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: tatum
+      changes:
+        - createTable:
+            tableName: atm_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: num_of_bath_20
+                  type: int
+              - column:
+                  name: num_of_bath_50
+                  type: int
+              - column:
+                  name: last_update
+                  type: bigint
