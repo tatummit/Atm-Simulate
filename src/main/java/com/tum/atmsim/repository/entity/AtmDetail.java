@@ -1,10 +1,5 @@
 package com.tum.atmsim.repository.entity;
 
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
-import org.joda.time.Instant;
-import org.joda.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,13 +13,13 @@ import java.util.Date;
 public class AtmDetail {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name ="num_of_bath_20")
+    @Column(name = "num_of_bath_20")
     private int NumOfBath20;
 
-    @Column(name ="num_of_bath_50")
+    @Column(name = "num_of_bath_50")
     private int NumOfBath50;
 
     @Column(name = "created_date")

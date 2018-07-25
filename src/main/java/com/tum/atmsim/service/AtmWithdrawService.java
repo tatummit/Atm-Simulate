@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.Objects;
 
 @Service
 public class AtmWithdrawService {
@@ -20,7 +21,10 @@ public class AtmWithdrawService {
     private AtmDetailRepository atmDetailRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public WithDrawResponse withdrawMoney(long id,WithDrawRequest request) {
+    public WithDrawResponse withdrawMoney(long id, WithDrawRequest request) {
+
+        validateRequest(request);
+
         AtmDetail atmDetail = getSafeAtmDetail(id);
 
         int requestWithDraw = request.getAmount();
@@ -46,6 +50,12 @@ public class AtmWithdrawService {
         return response;
     }
 
+    private void validateRequest(WithDrawRequest request) {
+        if (Objects.isNull(request)) {
+            throw new InvalidRequestException("WithDrawRequest must not be null");
+        }
+    }
+
     private SolutionWithdrawMoney findSolution(int request, int numOfRemainBath20, int numOfRemainBath50) {
 
         int usageBank50Bath;
@@ -53,7 +63,7 @@ public class AtmWithdrawService {
 
         usageBank50Bath = getUsageBank(request, numOfRemainBath50, 50);
 
-        for (int i = usageBank50Bath; i >= 0; i --) {
+        for (int i = usageBank50Bath; i >= 0; i--) {
             int remainWithDraw = request;
 
             remainWithDraw = remainWithDraw - i * 50;
@@ -70,7 +80,7 @@ public class AtmWithdrawService {
             }
         }
 
-        throw new InvalidRequestException("no bank note to support "+ request + " baths");
+        throw new InvalidRequestException("no bank note to support " + request + " baths");
     }
 
     private int getUsageBank(int request, int numOfRemainNote, int type) {
@@ -80,6 +90,6 @@ public class AtmWithdrawService {
     }
 
     private AtmDetail getSafeAtmDetail(long id) {
-        return atmDetailRepository.findById(id).orElseThrow( () -> new ResourceNotFoundException("atm id not found"));
+        return atmDetailRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("atm id not found"));
     }
 }

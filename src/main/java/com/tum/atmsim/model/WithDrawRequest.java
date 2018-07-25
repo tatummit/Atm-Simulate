@@ -1,13 +1,13 @@
 package com.tum.atmsim.model;
 
 public class WithDrawRequest {
-    private Integer amount;
+    private int amount;
 
-    public Integer getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 }
