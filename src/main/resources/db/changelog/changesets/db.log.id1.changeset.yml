@@ -20,5 +20,8 @@ databaseChangeLog:
                   name: num_of_bath_50
                   type: int
               - column:
-                  name: last_update
-                  type: bigint
+                  name: created_date
+                  type: datetime
+              - column:
+                  name: last_updated_date
+                  type: datetime

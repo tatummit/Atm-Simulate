@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: tatum
+      changes:
+        - insert:
+            catalogName: atm
+            columns:
+            - column:
+                name: id
+                type: bigint
+                valueNumeric: 1
+            - column:
+                name: num_of_bath_20
+                type: int
+                valueNumeric: 0
+            - column:
+                name: num_of_bath_50
+                type: int
+                valueNumeric: 0
+            - column:
+                name: created_date
+                type: datetime
+                valueComputed: now()
+            - column:
+                name: last_updated_date
+                type: datetime
+            tableName: atm_detail
