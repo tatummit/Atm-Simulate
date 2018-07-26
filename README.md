@@ -40,5 +40,31 @@ flush privileges;
 ```
 and start application with following command
 ```
-java -jar -Dspring.active.profile=mysql target/*.jar
+java -jar -Dspring.profile.active=mysql target/*.jar
+```
+
+### Testing
+
+update note in atm with following command:
+
+```
+curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' \
+-d '{ "id": 1, "numOfBath20": 100, "numOfBath50": 100 }' 'http://localhost:8080/api/v1/atm/1'
+
+```
+withdraw money with following command:
+```
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{
+  "amount": 100
+}' 'http://localhost:8080/api/v1/atm/1/withdraw'
+```
+get current atm profile with following command:
+```
+curl -X GET --header 'Accept: application/json' 'http://localhost:8080/api/v1/atm/1'
+
+```
+
+or you can test apis with swagger by open following url: 
+```
+http://localhost:8080/swagger-ut.html
 ```

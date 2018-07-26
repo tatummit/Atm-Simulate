@@ -22,7 +22,7 @@ public class AtmDetailUpdateService {
         validateRequest(atmDetail);
 
         atmDetail.setId(oldAtmDetail.getId());
-        atmDetail.setLastUpdatedDate(oldAtmDetail.getLastUpdatedDate());
+        atmDetail.setCreatedDate(oldAtmDetail.getCreatedDate());
         atmDetail.setLastUpdatedDate(new Date());
         return atmDetailRepository.save(atmDetail);
     }
