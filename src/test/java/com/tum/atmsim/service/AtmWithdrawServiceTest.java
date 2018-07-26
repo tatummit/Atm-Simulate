@@ -47,6 +47,14 @@ public class AtmWithdrawServiceTest {
         return atmDetail;
     }
 
+    /***
+     *  give ATM#1 have 100 bank20bath and 100 bank50bath.
+     *  when withdraw 100 bath
+     *  then ATM withdraw 0 bank20bath and 2 bank50bath.
+     *       Remaining note in ATM is
+     *       bank50bath 98 note.
+     *       bank20bath 100 note.
+     */
     @Test
     public void testWithdrawSuccessCase() {
         //Given
@@ -73,6 +81,14 @@ public class AtmWithdrawServiceTest {
 
     }
 
+    /***
+     *  give ATM#1 have 100 bank20bath and 100 bank50bath.
+     *  when withdraw 160 bath
+     *  then ATM withdraw 3 bank20bath and 2 bank50bath.
+     *       Remaining note in ATM is
+     *       bank50bath 98 note.
+     *       bank20bath 97 note.
+     */
     @Test
     public void testWithdrawFindSolutionSuccessCase() {
         //Given
@@ -99,8 +115,13 @@ public class AtmWithdrawServiceTest {
 
     }
 
+    /***
+     *  give ATM#1 have 100 bank20bath and 100 bank50bath.
+     *  when withdraw 30 bath
+     *  then throw an invalid request exception
+     */
     @Test(expected = InvalidRequestException.class)
-    public void testWithdrawWithUnsupportAmount() {
+    public void testWithdrawWithUnsupportedAmount() {
         try {
             //Given
             when(mockRepository.findById(eq(1L))).thenReturn(Optional.of(mockAtmDetail()));
@@ -115,6 +136,11 @@ public class AtmWithdrawServiceTest {
         }
     }
 
+    /***
+     *  give ATM#1 have 0 bank20bath and 0 bank50bath.
+     *  when withdraw 100 bath
+     *  then throw an invalid request exception
+     */
     @Test(expected = InvalidRequestException.class)
     public void testWithdrawWithZeroNote() {
         try {
@@ -130,6 +156,10 @@ public class AtmWithdrawServiceTest {
         }
     }
 
+    /***
+     *  when withdraw null
+     *  then throw an invalid request exception
+     */
     @Test(expected = InvalidRequestException.class)
     public void testWithdrawWithNullRequest() {
         try {
@@ -140,6 +170,11 @@ public class AtmWithdrawServiceTest {
         }
     }
 
+    /***
+     *  give no ATM#1 profile
+     *  when withdraw 100 bath
+     *  then throw an resource not found exception
+     */
     @Test(expected = ResourceNotFoundException.class)
     public void testWithdrawWithNotFoundAtmDetail() {
         try {

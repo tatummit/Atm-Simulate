@@ -5,10 +5,12 @@ import com.tum.atmsim.exception.ResourceNotFoundException;
 import com.tum.atmsim.repository.AtmDetailRepository;
 import com.tum.atmsim.repository.entity.AtmDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
 
+@Service
 public class AtmDetailUpdateService {
 
     @Autowired
