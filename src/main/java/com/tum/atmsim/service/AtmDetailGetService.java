@@ -6,6 +6,8 @@ import com.tum.atmsim.repository.entity.AtmDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AtmDetailGetService {
 
@@ -14,6 +16,10 @@ public class AtmDetailGetService {
 
     public AtmDetail getAtmDetail(long id) {
         return getSafeAtmDetail(id);
+    }
+
+    public List<AtmDetail> getAllAtmDetailList() {
+        return atmDetailRepository.findAll();
     }
 
     private AtmDetail getSafeAtmDetail(long id) {
