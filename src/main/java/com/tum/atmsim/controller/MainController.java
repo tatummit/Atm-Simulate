@@ -47,6 +47,7 @@ public class MainController {
                                     @ModelAttribute("data") AtmDetail atmDetail) {
         AtmDetail detail = updateService.updateAtmDetail(id, atmDetail);
         model.addAttribute("atm", detail);
+        model.addAttribute( "updated",true);
         return "config";
     }
 
@@ -54,6 +55,7 @@ public class MainController {
     public String getAtmConfigView(Model model, @PathVariable(value = "id") long id) {
         AtmDetail detail = getService.getAtmDetail(id);
         model.addAttribute("atm", detail);
+        model.addAttribute( "updated",false);
         return "config";
     }
 }

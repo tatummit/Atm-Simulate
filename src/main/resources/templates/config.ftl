@@ -25,7 +25,11 @@
     <div class="row">
         <div class="col-sm-12">
             <label>NumberOf20฿</label>
-            <@spring.formInput "atm.numOfBath20" "class='form-control'"/>
+            <#if updated>
+                <@spring.formInput "atm.numOfBath20" "class='form-control alert-success'"/>
+            <#else>
+                <@spring.formInput "atm.numOfBath20" "class='form-control'"/>
+            </#if>
             <span id="num20" class="text-danger"></span>
             <br>
         </div>
@@ -33,11 +37,16 @@
     <div class="row">
         <div class="col-sm-12">
             <label>NumberOf50฿</label>
-            <@spring.formInput "atm.numOfBath50" "class='form-control'"/>
+            <#if updated>
+                <@spring.formInput "atm.numOfBath50" "class='form-control alert-success'"/>
+            <#else>
+                <@spring.formInput "atm.numOfBath50" "class='form-control'"/>
+            </#if>
             <span id="num50" class="text-danger" ></span>
             <br>
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-sm-12">
             <input type="submit" class="btn btn-primary btn-block"/>
@@ -56,22 +65,31 @@
 
 </body>
 <script>
+
+$('input[type=text]').on('input', (event) => {
+     $(event.target).attr('class','form-control alert-warning');
+});
+
 function validateForm() {
     var x = $('#numOfBath20').val();
     var y = $('#numOfBath50').val();
     var validate = true;
     if (x <= 0 ||  !$.isNumeric(x) ) {
         $('#num20').html('Invalid number, please insert number > 0');
+        $('#numOfBath20').attr('class','form-control alert-danger')
         validate = false;
     } else {
         $('#num20').html('');
+        $('#numOfBath20').attr('class','form-control')
     }
 
     if (y <= 0 ||  !$.isNumeric(y) ) {
         $('#num50').html('Invalid number, please insert number > 0');
+        $('#numOfBath50').attr('class','form-control alert-danger')
         validate = false;
     } else {
         $('#num50').html('');
+        $('#numOfBath50').attr('class','form-control')
     }
 
     return validate;

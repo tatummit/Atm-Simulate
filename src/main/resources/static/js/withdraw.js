@@ -53,7 +53,7 @@ function displayResult(data) {
     msg += '<span>Withdraw ฿20: </span>'+ data.withDrawBank20Bath + "<br>";
     msg += '<span>Withdraw ฿50: </span>'+ data.withDrawBank50Bath + "<br>";
     msg += '<span>Remain ฿20: </span>'+ data.remainBank20Bath + '<br>';
-    msg += '<span>Remain ฿50: </span>'+ data.remainBank20Bath + '<br>';
+    msg += '<span>Remain ฿50: </span>'+ data.remainBank50Bath + '<br>';
     msg += '<span>Remain Amount: </span>'+ data.remainAmount + '<br>';
     msg += '</div>';
     $('.response').html(msg);
