@@ -1,6 +1,7 @@
 package com.tum.atmsim.service;
 
 import com.tum.atmsim.exception.InvalidRequestException;
+import com.tum.atmsim.exception.NotEnoughNoteException;
 import com.tum.atmsim.exception.ResourceNotFoundException;
 import com.tum.atmsim.model.SolutionWithdrawMoney;
 import com.tum.atmsim.model.WithDrawRequest;
@@ -80,7 +81,7 @@ public class AtmWithdrawService {
             }
         }
 
-        throw new InvalidRequestException("no bank note to support " + request + " baths");
+        throw new NotEnoughNoteException("No bank note to support " + request + " baths");
     }
 
     private int getUsageBank(int request, int numOfRemainNote, int type) {

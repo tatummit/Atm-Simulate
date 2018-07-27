@@ -1,7 +1,7 @@
 # ATM Simulation
 
-an application that simulates the logic of a cash dispensing Automatic Teller Machine (ATM). This project is propose for
-participate program only not for real production use.
+an application that simulates the logic of a cash dispensing Automatic Teller Machine (ATM). **This project is propose for
+participate program only not for real production use**.
 
 ## Feature
 
@@ -30,7 +30,7 @@ java -jar target/*.jar
 ```
 you can access application with following link
 ```
-http://localhost:8080/swagger-ut.html
+http://localhost:8080/
 ```
 *NOTE* An application will run with In-memory database as a default datasource. If you want to start application with mysql
 you need to install mysql and create schema and username with following command
@@ -71,3 +71,31 @@ or you can test apis with swagger by open following url:
 ```
 http://localhost:8080/swagger-ut.html
 ```
+
+### Package
+1. config : provide configuration class
+1. controller : provide handle request logic.
+1. exception : provide error and handle error class.
+1. model : provide transport and dto class.
+1. repository : provide layer to working with database.
+1. service : provide business logic class.
+1. util : provide helper function and static method.
+
+### Framework
+**Backend**
+1. spring-boost
+   1. jpa : handle database
+   1. liquibase : database version control
+   1. freemarker : template engine
+   1. dev-tool : quick restart service
+   1. mysql-jdbc : database driver
+   1. h2-jdbc : database driver
+   1. spring-test : junit & mockito for unit-test
+1. spring-fox : generate document by swagger
+
+**Fontend**
+
+1. freemarker
+1. jquery 3
+1. bootstrap 4 
+1. html5

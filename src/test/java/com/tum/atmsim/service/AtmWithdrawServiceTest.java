@@ -1,6 +1,7 @@
 package com.tum.atmsim.service;
 
 import com.tum.atmsim.exception.InvalidRequestException;
+import com.tum.atmsim.exception.NotEnoughNoteException;
 import com.tum.atmsim.exception.ResourceNotFoundException;
 import com.tum.atmsim.model.WithDrawRequest;
 import com.tum.atmsim.model.WithDrawResponse;
@@ -118,9 +119,9 @@ public class AtmWithdrawServiceTest {
     /***
      *  give ATM#1 have 100 bank20bath and 100 bank50bath.
      *  when withdraw 30 bath
-     *  then throw an invalid request exception
+     *  then throw a not enough note exception
      */
-    @Test(expected = InvalidRequestException.class)
+    @Test(expected = NotEnoughNoteException.class)
     public void testWithdrawWithUnsupportedAmount() {
         try {
             //Given
@@ -139,9 +140,9 @@ public class AtmWithdrawServiceTest {
     /***
      *  give ATM#1 have 0 bank20bath and 0 bank50bath.
      *  when withdraw 100 bath
-     *  then throw an invalid request exception
+     *  then throw an not enough note exception
      */
-    @Test(expected = InvalidRequestException.class)
+    @Test(expected = NotEnoughNoteException.class)
     public void testWithdrawWithZeroNote() {
         try {
             //Given

@@ -1,5 +1,6 @@
 package com.tum.atmsim.service;
 
+import com.tum.atmsim.exception.InvalidRequestException;
 import com.tum.atmsim.exception.ResourceNotFoundException;
 import com.tum.atmsim.repository.AtmDetailRepository;
 import com.tum.atmsim.repository.entity.AtmDetail;
@@ -46,6 +47,32 @@ public class AtmDetailUpdateServiceTest {
         assertEquals(100, actual.getNumOfBath20());
         assertEquals(100, actual.getNumOfBath50());
         assertNotNull(actual.getLastUpdatedDate());
+    }
+
+    @Test(expected = InvalidRequestException.class)
+    public void testUpdateWithNegative20BathNote() {
+        //Given
+        when(mockRepository.findById(eq(1L))).thenReturn(Optional.of(mockAtmDetail()));
+        //When
+        AtmDetail newDetail = new AtmDetail();
+        newDetail.setNumOfBath20(-100);
+        newDetail.setNumOfBath50(100);
+        service.updateAtmDetail(1L, newDetail);
+        //Then
+        //throw exception
+    }
+
+    @Test(expected = InvalidRequestException.class)
+    public void testUpdateWithNegative50BathNote() {
+        //Given
+        when(mockRepository.findById(eq(1L))).thenReturn(Optional.of(mockAtmDetail()));
+        //When
+        AtmDetail newDetail = new AtmDetail();
+        newDetail.setNumOfBath20(100);
+        newDetail.setNumOfBath50(-100);
+        service.updateAtmDetail(1L, newDetail);
+        //Then
+        //throw exception
     }
 
     @Test(expected = ResourceNotFoundException.class)

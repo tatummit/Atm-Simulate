@@ -2,6 +2,7 @@ package com.tum.atmsim.exception.handler;
 
 import com.tum.atmsim.exception.AtmSimualateException;
 import com.tum.atmsim.exception.InvalidRequestException;
+import com.tum.atmsim.exception.NotEnoughNoteException;
 import com.tum.atmsim.exception.ResourceNotFoundException;
 import com.tum.atmsim.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleResourceNotfoundException(ResourceNotFoundException ex) {
         ErrorResponse response = new ErrorResponse();
         response.setCode("Not Found");
+        response.setMessage(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(NotEnoughNoteException.class)
+    public ResponseEntity<ErrorResponse> handleNotEnoughNoteException(AtmSimualateException ex) {
+        ErrorResponse response = new ErrorResponse();
+        response.setCode("Not Support Note");
         response.setMessage(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }

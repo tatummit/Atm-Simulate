@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
-
 @Controller
 public class MainController {
 
@@ -46,7 +44,7 @@ public class MainController {
 
     @PostMapping("/atm/{id}/config")
     public String postAtmConfigView(Model model, @PathVariable(value = "id") long id,
-                                    @ModelAttribute("data") @Valid AtmDetail atmDetail) {
+                                    @ModelAttribute("data") AtmDetail atmDetail) {
         AtmDetail detail = updateService.updateAtmDetail(id, atmDetail);
         model.addAttribute("atm", detail);
         return "config";

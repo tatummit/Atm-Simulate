@@ -9,6 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -38,6 +40,17 @@ public class AtmDetailGetServiceTest {
     public void testGetNotFoundObject() {
         //When
         getService.getAtmDetail(1L);
+    }
+
+    @Test
+    public void testGetAllObject() {
+        //Given
+        List<AtmDetail> mockList = new ArrayList<>();
+        when(mockRepository.findAll()).thenReturn(mockList);
+        //When
+        List<AtmDetail> list = getService.getAllAtmDetailList();
+        //Then
+        assertEquals(mockList, list);
     }
 
     private AtmDetail mockAtmDetail() {
