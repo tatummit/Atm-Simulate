@@ -23,6 +23,9 @@ clone this project and run maven to build project with following command:
 ```
 cd <project_name>
 mvn clean install
+```
+to run application.
+```
 java -jar target/*.jar
 ```
 you can access application with following link
